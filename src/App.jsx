@@ -236,20 +236,26 @@ const HandleCheckbox=(e,id)=>{
 
 strorTOlocal()
 }
+const HandleEdit = (e, id) => {
+  const Index = MultipleTodos.findIndex(item => item.id === id);
+  const currentTodo = MultipleTodos[Index].SingleTodo;
 
+  // Open prompt with current todo
+  const newValue = prompt("Enter Right Todo", currentTodo);
 
+  // Check what user entered
+  if (newValue !== null) {
+    if (newValue.trim().length > 3) {
+      const newMultipleTodos = [...MultipleTodos];
+      newMultipleTodos[Index].SingleTodo = newValue.trim();
+      setMultipleTodos(newMultipleTodos);
+      strorTOlocal();
+    } else {
+      window.alert("Todo must be greater than 3 characters");
+    }
+  }
+};
 
-const HandleEdit=(e,id)=>{
-let Index=MultipleTodos.findIndex((item)=>{
-  return item.id===id;
-})
-let newMultipleTodos=[...MultipleTodos];
-newMultipleTodos[Index].SingleTodo=prompt("Enter Right Todo")
-setMultipleTodos(newMultipleTodos);
-
-strorTOlocal()
-
-}
 
 
 const HandleDelete=(e,id)=>{
